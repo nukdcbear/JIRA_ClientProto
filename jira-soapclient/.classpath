@@ -1,0 +1,36 @@
+<classpath>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="src" path="target/generated-sources/axistools/wsdl2java" including="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="var" path="M2_REPO/com/atlassian/jira/plugins/atlassian-jira-rpc-plugin/5.1.4/atlassian-jira-rpc-plugin-5.1.4.jar" sourcepath="M2_REPO/com/atlassian/jira/plugins/atlassian-jira-rpc-plugin/5.1.4/atlassian-jira-rpc-plugin-5.1.4-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/DC/.m2/repository/com/atlassian/jira/plugins/atlassian-jira-rpc-plugin/5.1.4/atlassian-jira-rpc-plugin-5.1.4-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/axis/axis/1.3/axis-1.3.jar" sourcepath="M2_REPO/axis/axis/1.3/axis-1.3-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/axis/axis-jaxrpc/1.3/axis-jaxrpc-1.3.jar" sourcepath="M2_REPO/axis/axis-jaxrpc/1.3/axis-jaxrpc-1.3-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/axis/axis-saaj/1.3/axis-saaj-1.3.jar" sourcepath="M2_REPO/axis/axis-saaj/1.3/axis-saaj-1.3-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/axis/axis-wsdl4j/1.5.1/axis-wsdl4j-1.5.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-discovery/commons-discovery/0.2/commons-discovery-0.2.jar" sourcepath="M2_REPO/commons-discovery/commons-discovery/0.2/commons-discovery-0.2-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/DC/.m2/repository/commons-discovery/commons-discovery/0.2/commons-discovery-0.2-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/DC/.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/sun/jersey/jersey-client/1.17.1/jersey-client-1.17.1.jar" sourcepath="M2_REPO/com/sun/jersey/jersey-client/1.17.1/jersey-client-1.17.1-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/DC/.m2/repository/com/sun/jersey/jersey-client/1.17.1/jersey-client-1.17.1-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/sun/jersey/jersey-core/1.17.1/jersey-core-1.17.1.jar" sourcepath="M2_REPO/com/sun/jersey/jersey-core/1.17.1/jersey-core-1.17.1-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/DC/.m2/repository/com/sun/jersey/jersey-core/1.17.1/jersey-core-1.17.1-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/wsdl4j/wsdl4j/1.5.1/wsdl4j-1.5.1.jar" sourcepath="M2_REPO/wsdl4j/wsdl4j/1.5.1/wsdl4j-1.5.1-sources.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+</classpath>
