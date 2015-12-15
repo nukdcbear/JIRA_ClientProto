@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.atlassian.pom</groupId>
+        <artifactId>atlassian-public-pom</artifactId>
+        <version>23</version>
+    </parent>
+
+    <groupId>com.atlassian.jira.plugins</groupId>
+    <artifactId>atlassian-jira-rpc-parent</artifactId>
+    <version>4.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>JIRA RPC parent POM</name>
+    <description>Contains the JIRA RPC plugin and a sample soap client.</description>
+
+    <modules>
+        <module>jira-soapclient</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <meminitial>128m</meminitial>
+                    <maxmem>512m</maxmem>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <jdkLevel>1.8</jdkLevel>
+        <jira.version>6.4</jira.version>
+        <jira.data.version>6.4</jira.data.version>
+    </properties>
+</project>
