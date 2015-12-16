@@ -141,6 +141,16 @@
 					<groupId>com.sun.jersey</groupId>
 					<artifactId>jersey-client</artifactId>
 				</dependency>
+		<dependency>
+			<groupId>net.sf.jopt-simple</groupId>
+			<artifactId>jopt-simple</artifactId>
+			<version>4.9</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.10</version>
+		</dependency>
     </dependencies>
     <dependencyManagement>
     	<dependencies>
@@ -174,6 +184,16 @@
     			<artifactId>jersey-client</artifactId>
     			<version>1.17.1</version>
     		</dependency>
+			<dependency>
+				<groupId>net.sf.jopt-simple</groupId>
+				<artifactId>jopt-simple</artifactId>
+				<version>4.9</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>1.10</version>
+			</dependency>
     	</dependencies>
     </dependencyManagement>
 </project>

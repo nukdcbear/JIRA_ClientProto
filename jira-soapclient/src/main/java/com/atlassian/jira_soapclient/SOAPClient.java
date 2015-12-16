@@ -15,6 +15,9 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
+import org.apache.commons.configuration.PropertiesConfiguration;
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,6 +31,7 @@ import java.rmi.RemoteException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Arrays;
 
 public class SOAPClient
 {
@@ -41,8 +45,49 @@ public class SOAPClient
 
     public static void main(String[] args) throws Exception
     {
-    	CreateFilter();
-    	//CreateEpic();
+    	String jiraServerURL = "";
+    	
+    	OptionParser parser = new OptionParser();
+    	parser.acceptsAll(Arrays.asList("e", "env"), "JIRA environment.").withRequiredArg().ofType(String.class).isRequired();
+    	parser.acceptsAll(Arrays.asList("u", "user"), "JIRA user ID.").withRequiredArg().ofType(String.class).isRequired();
+    	parser.acceptsAll(Arrays.asList("p", "passwd"), "JIRA user password.").withRequiredArg().ofType(String.class).isRequired();
+    	parser.acceptsAll(Arrays.asList("h", "?"), "Show help.").forHelp();
+    	
+    	OptionSet cmdLineOpts = parser.parse(args);
+    	
+    	if (cmdLineOpts.has("h"))
+    	{
+    		parser.printHelpOn( System.out );
+    		System.exit(0);;
+    	}
+    	
+    	try
+    	{
+    		PropertiesConfiguration config = new PropertiesConfiguration("");
+    		
+    		switch (cmdLineOpts.valueOf("e").toString().toLowerCase())
+    		{
+    			case "dev":
+    				jiraServerURL = config.getProperty("dev-serverurl").toString();
+    				break;
+    			case "test":
+    				jiraServerURL = config.getProperty("test-serverurl").toString();
+    				break;
+    			default:
+    				System.out.println("JIRA environment not supported: " + cmdLineOpts.valueOf("e").toString());
+    				System.exit(1);
+    				break;
+    		}
+    		
+    	}
+    	catch (Exception ex)
+    	{
+    		System.out.println(ex.getMessage());
+    		System.exit(1);
+    	}
+    	
+    	CreateFilter(jiraServerURL, cmdLineOpts.valueOf("u").toString(), cmdLineOpts.valueOf("p").toString());
+    	//CreateEpic(jiraServerURL, cmdLineOpts.valueOf("u").toString(), cmdLineOpts.valueOf("p").toString());
 //        String baseUrl = "http://elmerfudd:2990/jira/rpc/soap/jirasoapservice-v2";
 //        System.out.println("JIRA SOAP client sample");
 //        SOAPSession soapSession = new SOAPSession(new URL(baseUrl));
@@ -53,14 +98,14 @@ public class SOAPClient
 //        RemoteIssue issue = testCreateIssue(jiraSoapService, authToken);
     }
 
-    private static void CreateEpic()
+    private static void CreateEpic(String jiraServerURL, String jiraUserID, String jiraUserPwd)
     {
     	try
     	{
     		Client client = Client.create();
-    		client.addFilter(new HTTPBasicAuthFilter("dbarringer", "b@$FRt93"));
+    		client.addFilter(new HTTPBasicAuthFilter(jiraUserID, jiraUserPwd));
     		
-    		WebResource webSite = client.resource("http://devjra01:8080/rest/api/2/issue");
+    		WebResource webSite = client.resource(jiraServerURL + "/rest/api/2/issue");
     		
     		String issueinput = "{\"fields\":{\"project\":{\"key\":\"CRP\"},\"customfield_10005\":\"Created via REST Call\",\"summary\":\"Created via REST Call\",\"description\":\"This is a dummy Epic\",\"reporter\":{\"name\":\"dbarringer\"},\"issuetype\":{\"name\":\"Epic\"}}}";
     		
@@ -78,14 +123,14 @@ public class SOAPClient
     	
     }
     
-    private static void CreateFilter()
+    private static void CreateFilter(String jiraServerURL, String jiraUserID, String jiraUserPwd)
     {
     	try
     	{
     		Client client = Client.create();
-    		client.addFilter(new HTTPBasicAuthFilter("dbarringer", "b@$FRt93"));
+    		client.addFilter(new HTTPBasicAuthFilter(jiraUserID, jiraUserPwd));
     		
-    		WebResource webSite = client.resource("http://devjra01:8080/rest/api/2/filter");
+    		WebResource webSite = client.resource(jiraServerURL + "/rest/api/2/filter");
     		
     		String filterinput = "{\"name\":\"Filter From REST\",\"description\":\"Filter created via REST api call\",\"jql\":\"project = CRP AND issuetype = Epic\",\"favourite\":true}";
     		
