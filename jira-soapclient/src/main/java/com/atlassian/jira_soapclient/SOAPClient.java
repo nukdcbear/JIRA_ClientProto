@@ -16,6 +16,10 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.commons.logging.impl.Log4JCategoryLog;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 
@@ -29,13 +33,18 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Arrays;
 
 public class SOAPClient
 {
-    static final String LOGIN_NAME = "admin";
+    // Define a static logger variable so that it references the
+    // Logger instance named "MyApp".
+    private static final Logger logger = LogManager.getLogger(SOAPClient.class);
+
+	static final String LOGIN_NAME = "admin";
     static final String LOGIN_PASSWORD = "admin";
     static final String PROJECT_KEY = "TST";
     static final String ISSUE_TYPE_ID = "1";
@@ -46,6 +55,15 @@ public class SOAPClient
     public static void main(String[] args) throws Exception
     {
     	String jiraServerURL = "";
+    	SimpleDateFormat dtmFprmat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+    	
+    	String filename = "jira-soapclient-" + dtmFprmat.format(new Date()) + ".log";
+    	
+    	// Set log4j logFilename in system properties - reference sys.logFilename
+    	System.setProperty("logFilename", filename);
+    	// Must reconfigure the LogManager to pick up the reference to sys.logFilename in log4j2.xml
+    	LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+    	ctx.reconfigure();
     	
     	OptionParser parser = new OptionParser();
     	parser.acceptsAll(Arrays.asList("e", "env"), "JIRA environment.").withRequiredArg().ofType(String.class).isRequired();
@@ -63,7 +81,7 @@ public class SOAPClient
     	
     	try
     	{
-    		PropertiesConfiguration config = new PropertiesConfiguration("");
+    		PropertiesConfiguration config = new PropertiesConfiguration("jira-soapclient.properties");
     		
     		switch (cmdLineOpts.valueOf("e").toString().toLowerCase())
     		{
@@ -75,6 +93,7 @@ public class SOAPClient
     				break;
     			default:
     				System.out.println("JIRA environment not supported: " + cmdLineOpts.valueOf("e").toString());
+    				logger.error("JIRA environment not supported: " + cmdLineOpts.valueOf("e").toString());
     				System.exit(1);
     				break;
     		}
@@ -83,6 +102,7 @@ public class SOAPClient
     	catch (Exception ex)
     	{
     		System.out.println(ex.getMessage());
+    		logger.error(ex.getMessage());
     		System.exit(1);
     	}
     	
@@ -113,12 +133,14 @@ public class SOAPClient
     		
     		String output = response.getEntity(String.class);
     		
-    		System.out.println("Output from Server ... \n");
-    		System.out.println(output);  		
+    		//System.out.println("Output from Server ... \n");
+    		//System.out.println(output);
+    		logger.info("Output from Server ... " + output);
     	}
     	catch (Exception e)
     	{
     		e.printStackTrace();
+    		logger.trace("Exception: " + e.getMessage());
     	}
     	
     }
@@ -138,12 +160,14 @@ public class SOAPClient
     		
     		String output = response.getEntity(String.class);
     		
-    		System.out.println("Output from Server ... \n");
-    		System.out.println(output);  		
+    		//System.out.println("Output from Server ... \n");
+    		//System.out.println(output);  		
+    		logger.info("Output from Server ... " + output);
     	}
     	catch (Exception e)
     	{
     		e.printStackTrace();
+       		logger.trace("Exception: " + e.getMessage());
     	}    	
     }
     

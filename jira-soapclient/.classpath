@@ -46,6 +46,16 @@
       <attribute value="jar:file:/C:/Users/nukdc/.m2/repository/net/sf/jopt-simple/jopt-simple/4.9/jopt-simple-4.9-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/org/apache/logging/log4j/log4j-api/2.5/log4j-api-2.5.jar" sourcepath="M2_REPO/org/apache/logging/log4j/log4j-api/2.5/log4j-api-2.5-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/nukdc/.m2/repository/org/apache/logging/log4j/log4j-api/2.5/log4j-api-2.5-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/org/apache/logging/log4j/log4j-core/2.5/log4j-core-2.5.jar" sourcepath="M2_REPO/org/apache/logging/log4j/log4j-core/2.5/log4j-core-2.5-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/nukdc/.m2/repository/org/apache/logging/log4j/log4j-core/2.5/log4j-core-2.5-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
   <classpathentry kind="var" path="M2_REPO/wsdl4j/wsdl4j/1.5.1/wsdl4j-1.5.1.jar" sourcepath="M2_REPO/wsdl4j/wsdl4j/1.5.1/wsdl4j-1.5.1-sources.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 </classpath>
